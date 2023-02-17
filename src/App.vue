@@ -1,11 +1,22 @@
+<script lang="ts" setup>
+import AppBar from '@/components/appBar/AppBar.vue';
+import SideBar from "./components/sideBar/SideBar.vue";
+import { sideBarWidth } from '@/components/sideBar/state';
+
+
+
+</script>
+
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+    <AppBar />
+    <SideBar />
+    <div :style="{ 'margin-left': sideBarWidth }">
+      <router-view />
+    </div>
+
+
+</div>
 </template>
 
 <style>
