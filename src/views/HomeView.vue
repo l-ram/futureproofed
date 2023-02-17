@@ -1,9 +1,3 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
-</template>
 
 <script lang="ts">
 import Vue from "vue";
@@ -16,3 +10,19 @@ export default Vue.extend({
   },
 });
 </script>
+
+<template>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  </div>
+</template>
+
+<style scoped>
+
+.home {
+  margin-top: 5%;
+  margin-left: 5%
+}
+
+</style>
