@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import AppBar from '@/components/appBar/AppBar.vue';
 import SideBar from "./components/sideBar/SideBar.vue";
-import { sideBarWidth } from '@/components/sideBar/state';
 
 
 
@@ -11,7 +10,7 @@ import { sideBarWidth } from '@/components/sideBar/state';
   <div id="app">
     <AppBar />
     <SideBar />
-    <div :style="{ 'margin-left': sideBarWidth }">
+    <div>
       <router-view />
     </div>
 

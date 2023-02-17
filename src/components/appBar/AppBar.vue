@@ -12,22 +12,11 @@ export default {
 
 <template>
     <div class="appbar">
-
-        <div class="logo"></div>
-
+        <img class="logo" :src="require('@/assets/SWEC-A.ST.png')" />
         <h1 class="title">Emission Data</h1>
-
-        <router-link to="/" class="link"><font-awesome-icon icon="fa-solid fa-home" /> Home</router-link>
-        <router-link to="data" class="link"><font-awesome-icon icon="fa-solid fa-list-check" />Data</router-link>
-        <router-link to="analytics" class="link"><font-awesome-icon icon="fa-solid fa-chart-line" />Analytics</router-link>
-        <router-link to="plan" class="link"><font-awesome-icon icon="fa-solid fa-map-location-dot" />Plan</router-link>
-
-        <SearchBar/>
-
-        <span class="lower-icon">
-            <font-awesome-icon icon="fa-solid fa-mug-hot" />
-        </span>
-
+        <SearchBar />
+        <font-awesome-icon icon="fa-solid fa-bell" />
+        <font-awesome-icon icon="fa-solid fa-circle-user" />
     </div>
 </template>
 
@@ -55,6 +44,12 @@ export default {
     z-index: 2;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logo {
+    padding: 1em;
+    max-height: 50px;
+    max-width: 50px;
 }
 
 .link {

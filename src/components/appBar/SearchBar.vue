@@ -1,9 +1,5 @@
 <script lang="ts">
 
-interface SearchBarProps {
-    name?: string
-}
-
 export default {
     props: {},
 }
@@ -11,92 +7,71 @@ export default {
 </script>
 
 <template>
-
-<div class="search-box">
-    <button class="btn-search"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button>
-    <input type="text" class="input-search" placeholder="Type to Search...">
-  </div>
-
-<div class=searchComponent>
-
-    
-    <input class=searchBar type="text">
-
-</div>
-
+    <div class="search-box">
+        <button class="btn-search"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button>
+        <input type="text" class="input-search" placeholder="Search...">
+    </div>
 </template>
 
 <style>
-
-* {
-  box-sizing: border-box;
-}
-
-.search-box{
-  width: fit-content;
-  height: fit-content;
-  position: relative;
-}
-
-.searchComponent {
+.search-box {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: auto;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    padding: 1em;
 }
 
-.searchBar {
-    border: none;
-    border-radius: 5px;
+.input-search {
+    height: 20px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: var(--sidebar-item-hover);
+    padding-right: 40px;
+    color: #fff;
 }
 
-.input-search{
-  height: 50px;
-  width: 50px;
-  border-style: none;
-  padding: 10px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  outline: none;
-  border-radius: 25px;
-  transition: all .5s ease-in-out;
-  background-color: #22a6b3;
-  padding-right: 40px;
-  color:#fff;
+.input-search::placeholder {
+    color: rgba(255, 255, 255, .5);
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 100;
 }
-.input-search::placeholder{
-  color:rgba(255,255,255,.5);
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 100;
+
+.btn-search {
+    padding-right: .7em;
+    border-style: none;
+    font-size: 12px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    color: #ffffff;
+    background-color: transparent;
 }
-.btn-search{
-  width: 50px;
-  height: 50px;
-  border-style: none;
-  font-size: 20px;
-  font-weight: bold;
-  outline: none;
-  cursor: pointer;
-  border-radius: 50%;
-  position: absolute;
-  right: 0px;
-  color:#ffffff ;
-  background-color:transparent;
-  pointer-events: painted;  
+
+.btn-search:focus~.input-search {
+    width: 150px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.9, 0.35, 1);
 }
-.btn-search:focus ~ .input-search{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
-.input-search:focus{
-  width: 300px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+
+.input-search:focus {
+    width: 150px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.9, 0.35, 1);
 }
 
 </style>
