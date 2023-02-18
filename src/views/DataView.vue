@@ -1,15 +1,30 @@
 <script lang="ts">
 
-import { faGasPump } from "@fortawesome/free-solid-svg-icons";
 import Vue from "vue";
 
 export default Vue.extend({
   name: "DataView",
+  template: `
+    <button id="submit" @click="getFormDataOnClick" type="button">
+        Submit
+    </button>`,
   components: {
 
   },
   methods: {
+    getFormDataOnClick(event: Event) {
+      console.log(event, 'heard event!');
+
+      if (submitButton !== null) {
+        submitButton.addEventListener('submit', (event) => {
+          event.preventDefault();
+          console.log("i'm running!!!")
+        }
+        )
+      } else if {console.log("button is null!!!")};
+    }
   }
+
 });
 
 // Every key is the emission source of type string, 
@@ -25,37 +40,46 @@ interface IEmissionEntry {
 
 // Emissions array
 const emissionEntries: IEmissionEntry[] = [];
+
+// HTML form object
 const emissionsForm = document.getElementById('formData');
-const submitButton = (document.getElementById('submit') as HTMLInputElement);
+const submitButton = document.getElementById('submit');
 
-const getFormDataOnClick = () => {
-
+if (submitButton) {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     console.log(event, 'heard event!')
   }
   )
-};
+}
 
-emissionsForm?.addEventListener('submit', function (event) {
-  event.preventDefault();
+// const getFormDataOnClick = (event: Event) => {
 
-  console.log(event, 'heard event!');
-  const source = (document.getElementById('source') as HTMLInputElement).value;
-  const type = (document.getElementById('type') as HTMLInputElement).value;
-  const value = (document.getElementById('value') as HTMLInputElement).valueAsNumber;
-  const unit = (document.getElementById('unit') as HTMLInputElement).value;
+//   submitButton.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     console.log(event, 'heard event!')
+//   }
+//   )
+// };
 
-  const formData: IEmissionEntry = {
-    [source]: {
-      type,
-      value,
-      unit
-    }
-  }
-  emissionEntries.push(formData);
-  console.log(emissionEntries);
-});
+// emissionsForm.addEventListener('submit', function (event) {
+//   event.preventDefault();
+
+//   const source = (document.getElementById('source') as HTMLInputElement).value;
+//   const type = (document.getElementById('type') as HTMLInputElement).value;
+//   const value = (document.getElementById('value') as HTMLInputElement).valueAsNumber;
+//   const unit = (document.getElementById('unit') as HTMLInputElement).value;
+
+//   const formData: IEmissionEntry = {
+//     [source]: {
+//       type,
+//       value,
+//       unit
+//     }
+//   }
+//   emissionEntries.push(formData);
+//   console.log(emissionEntries);
+// });
 
 </script> 
 
@@ -87,7 +111,7 @@ emissionsForm?.addEventListener('submit', function (event) {
         <option value="Liter">Liter</option>
       </select>
 
-      <button id="submit" type="button">
+      <button id="submit" @click="getFormDataOnClick" type="button">
         Submit
       </button>
 
