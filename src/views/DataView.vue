@@ -1,47 +1,75 @@
 <script lang="ts">
 
-interface IEmissionSource  {
-  category: string;
-}
+import Vue from "vue";
 
-interface IMUnit {
-  m3?: string;
-  liter?: string;
-  kWh?: string;
-}
+export default Vue.extend({
+  name: "DataView",
+  components: {
 
-interface IEmissionData {
-  energyType: string;
-  unit: IMUnit[];
-  value: number;
-}
+  },
+});
 
+// Every key is the emission source of type string, 
+// and the value of each key is a object containing the emission data
 interface IEmissionEntry {
-  [emissionSource: string]: {
-    emissionData: IEmissionData[];
+  [source: string]: {
+    type: string;
+    value: number;
+    unit: string;
   }
 }
 
 // Emissions array
-const emissionEntries:IEmissionEntry[] = []
+const emissionEntries: IEmissionEntry[] = [];
 
-const addEmissionEntryOnClick = (source:string, type:string, value: number, unit:IMUnit[]) => {
-  
-emissionEntries.push()
-
-}
-
-console.log(emissionEntries);
-
+const emissionsForm = document.getElementById('formData');
+emissionsForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  const source = (document.getElementById('source') as HTMLInputElement).value;
+  const type = (document.getElementById('type') as HTMLInputElement).value;
+  const value = (document.getElementById('value') as HTMLInputElement).value;
+  const unit = (document.getElementById('unit') as HTMLInputElement).value;
+  const formData = { source, type, value, unit };
+  emissionEntries.push(formData);
+  console.log(emissionEntries);
+});
 
 </script> 
 
-
 <template>
   <div class="data">
-    <h1>This is a data page</h1>
-    <h1>This is a data page</h1>
-    <h1>This is a data page</h1>
+
+    <form id="formData">
+      <label for="">Emission Source</label>
+      <select id="source" name="source">
+        <option value="Headquarters">Headquarters</option>
+        <option value="Office 1">Office 1</option>
+        <option value="Office 2">Office 2</option>
+        <option value="Office 3">Office 3"</option>
+        <option value="Office 4">Office 4</option>
+        <option value="Factory 1">Factory 1</option>
+        <option value="Factory 2">Factory 2</option>
+      </select>
+
+      <label for="">Type</label>
+      <input id="type" placeholder="Energy" type="text" name="Energy" />
+
+      <label for="">Value</label>
+      <input id="value" placeholder="Value" type="number" name="Value" />
+
+      <label for="">Unit</label>
+      <select id="units" name="Units">
+        <option value="kWh">kWh</option>
+        <option value="m3">m3</option>
+        <option value="Liter">Liter</option>
+      </select>
+
+      <button type="submit">
+        Submit
+      </button>
+
+    </form>
+
   </div>
 </template>
 
