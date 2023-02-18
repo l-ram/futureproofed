@@ -8,6 +8,8 @@ export default Vue.extend({
   components: {
 
   },
+  methods: {
+  }
 });
 
 // Every key is the emission source of type string, 
@@ -21,37 +23,24 @@ interface IEmissionEntry {
   }
 }
 
-// const array: IEmissionEntry[] = [];
-
-// const myObject: IEmissionEntry = {
-
-//   building1: {
-//     type: "gas",
-//     value: 10000,
-//     unit: "m3"
-//   },
-//   building2: {
-//     type: "gas",
-//     value: 10000,
-//     unit: "m3"
-//   }
-// }
-
 // Emissions array
 const emissionEntries: IEmissionEntry[] = [];
 const emissionsForm = document.getElementById('formData');
-const submitButton = document.getElementById('submit') as HTMLInputElement;
+const submitButton = (document.getElementById('submit') as HTMLInputElement);
 
-submitButton.addEventListener('submit', (event) => {
-  event.preventDefault();
-  console.log(event, 'heard event!')
-}
-)
+const getFormDataOnClick = () => {
+
+  submitButton.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log(event, 'heard event!')
+  }
+  )
+};
 
 emissionsForm?.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  console.log(event, 'heard event!')
+  console.log(event, 'heard event!');
   const source = (document.getElementById('source') as HTMLInputElement).value;
   const type = (document.getElementById('type') as HTMLInputElement).value;
   const value = (document.getElementById('value') as HTMLInputElement).valueAsNumber;
@@ -98,7 +87,7 @@ emissionsForm?.addEventListener('submit', function (event) {
         <option value="Liter">Liter</option>
       </select>
 
-      <button id="submit" type="submit">
+      <button id="submit" type="button">
         Submit
       </button>
 
