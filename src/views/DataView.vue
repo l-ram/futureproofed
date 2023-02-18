@@ -1,5 +1,6 @@
 <script lang="ts">
 
+import { faGasPump } from "@fortawesome/free-solid-svg-icons";
 import Vue from "vue";
 
 export default Vue.extend({
@@ -11,6 +12,7 @@ export default Vue.extend({
 
 // Every key is the emission source of type string, 
 // and the value of each key is a object containing the emission data
+
 interface IEmissionEntry {
   [source: string]: {
     type: string;
@@ -19,17 +21,49 @@ interface IEmissionEntry {
   }
 }
 
+// const array: IEmissionEntry[] = [];
+
+// const myObject: IEmissionEntry = {
+
+//   building1: {
+//     type: "gas",
+//     value: 10000,
+//     unit: "m3"
+//   },
+//   building2: {
+//     type: "gas",
+//     value: 10000,
+//     unit: "m3"
+//   }
+// }
+
 // Emissions array
 const emissionEntries: IEmissionEntry[] = [];
-
 const emissionsForm = document.getElementById('formData');
-emissionsForm.addEventListener('submit', function (event) {
+const submitButton = document.getElementById('submit') as HTMLInputElement;
+
+submitButton.addEventListener('submit', (event) => {
   event.preventDefault();
+  console.log(event, 'heard event!')
+}
+)
+
+emissionsForm?.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  console.log(event, 'heard event!')
   const source = (document.getElementById('source') as HTMLInputElement).value;
   const type = (document.getElementById('type') as HTMLInputElement).value;
-  const value = (document.getElementById('value') as HTMLInputElement).value;
+  const value = (document.getElementById('value') as HTMLInputElement).valueAsNumber;
   const unit = (document.getElementById('unit') as HTMLInputElement).value;
-  const formData = { source, type, value, unit };
+
+  const formData: IEmissionEntry = {
+    [source]: {
+      type,
+      value,
+      unit
+    }
+  }
   emissionEntries.push(formData);
   console.log(emissionEntries);
 });
@@ -51,20 +85,20 @@ emissionsForm.addEventListener('submit', function (event) {
         <option value="Factory 2">Factory 2</option>
       </select>
 
-      <label for="">Type</label>
+      <label for="">Type:</label>
       <input id="type" placeholder="Energy" type="text" name="Energy" />
 
-      <label for="">Value</label>
-      <input id="value" placeholder="Value" type="number" name="Value" />
+      <label for="value">Value:</label>
+      <input id="value" type="number" placeholder="Value" name="Value" />
 
-      <label for="">Unit</label>
+      <label for="">Unit:</label>
       <select id="units" name="Units">
         <option value="kWh">kWh</option>
         <option value="m3">m3</option>
         <option value="Liter">Liter</option>
       </select>
 
-      <button type="submit">
+      <button id="submit" type="submit">
         Submit
       </button>
 
