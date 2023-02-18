@@ -56,13 +56,18 @@ export default {
 
 
 .item1 {
-
     padding: 1em
 }
-
+.item1:hover {
+    scale: 125%;
+    transition: 0.5s;
+}
 .item2 {
-    font-size: 12;
     padding: 1em;
+}
+.item2:hover {
+    scale: 125%;
+    transition: 0.5s;
 }
 
 </style>
