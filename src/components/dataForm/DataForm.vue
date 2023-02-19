@@ -1,7 +1,29 @@
 
 <template>
     <section>
+
         <div class="container">
+
+
+            <ul class="breadcrumb">
+                <li><a href="#">Company facilities</a></li>
+                <li><a href="#">Stationary combustion</a></li>
+                <li><a href="#">Office 1</a></li>
+            </ul>
+
+            <div id="onClose"></div>
+            <div>
+                <h1>Heating main building</h1>
+            </div>
+
+            <div class="headings">
+                <h3>Data</h3>
+                <h3>History</h3>
+                <h3>Details</h3>
+                <h3>Activity</h3>
+                <h3>Notes</h3>
+            </div>
+
             <form @submit.prevent="handleSubmit">
                 <div class="form-group">
                     <label for="fullName">Type</label>
@@ -20,6 +42,22 @@
 
                 <button type="submit">Submit</button>
             </form>
+
+            <div class="divider">
+
+            </div>
+
+            <div class="note">
+                <p>Add note</p>
+            </div>
+
+            <div class="attachment">
+                <p>Add attachment</p>
+            </div>
+
+            <div></div>
+
+
         </div>
 
         <div>
@@ -33,50 +71,55 @@
 
 <script lang="ts">
 import { db } from '../../firebase/config'
-import { collection } from '@firebase/firestore';
+import { collection, addDoc } from '@firebase/firestore';
 
 interface IHandleSubmit {
-    type: string;
-    value: number;
-    unit: string
+    [key: string]: {
+        type: string;
+        value: number;
+        unit: string;
+    }
 }
 
 
 export default {
-data() {
-    return {
-        type: '',
-        value: 0,
-        unit: ''
+    data() {
+        return {
+            type: '',
+            value: 0,
+            unit: ''
+        }
+    },
+    methods: {
+        handleSubmit() {
+            console.log("click");
+            let emissionData: IHandleSubmit = {
+                type: this.type,
+                value: this.value,
+                unit: this.unit,
+            }
+            console.log(emissionData);
+
+            addDoc(collection(db, "emissionData"), emissionData);
+
+        }
     }
-},
-methods: {
-  handleSubmit() {
-    let emissionData:IHandleSubmit = {
-      type: this.type,
-      value: this.value,
-      unit: this.unit,
-    }
-    const emissionDataRef = collection(db, "emissionData");
-  }
-}
 }
 
 // Every key is the emission source of type string, and the value of each key is a object containing the emission data
 interface IEmissionEntry {
-  [source: string]: {
-    type: string;
-    value: number;
-    unit: string;
-  }
+    [source: string]: {
+        type: string;
+        value: number;
+        unit: string;
+    }
 }
 
 </script>
 
 <style>
-
 section {
-    height: 100vh;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -91,6 +134,76 @@ section {
     border-radius: 8px;
 }
 
+/* Breadcrumbs */
+
+.breadcrumb {
+    font: .75em sans-serif;
+    list-style: none;
+}
+
+.breadcrumb p {
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: inline-block;
+    margin-bottom: .2em;
+}
+
+.breadcrumb li a {
+    background-color: var(--sidebar-bg-color);
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    max-height: 2em;
+    padding: .5em 1em .5em 1.5em;
+    position: relative;
+    text-decoration: none;
+    transition: .25s;
+}
+
+.breadcrumb li a:before {
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-left: 1em solid #fff;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1.25em;
+    z-index: 1;
+}
+
+.breadcrumb li a:after {
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-left: 1em solid var(--sidebar-bg-color);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1em;
+    transition: .25s;
+    z-index: 1;
+}
+
+.breadcrumb li a:hover {
+    background-color: var(--sidebar-item-active);
+}
+
+.breadcrumb li a:hover:after {
+    border-left-color: var(--sidebar-item-active);
+}
+
+.breadcrumb li:last-child a {
+    background-color: var(--sidebar-item-active);
+    pointer-events: none;
+}
+
+.breadcrumb li:last-child a:after {
+    border-left-color: var(--sidebar-item-active);
+}
+
+/* End breadcrumbs */
+
 .form-group {
     margin-top: 20px;
     font-size: 20px;
@@ -104,10 +217,6 @@ section {
     font-size: 18px;
     border: 1px solid rgba(128, 128, 128, 0.199);
     margin-top: 5px;
-}
-
-textarea {
-    resize: vertical;
 }
 
 button {
