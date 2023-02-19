@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import AppBar from '@/components/appBar/AppBar.vue';
 import SideBar from "./components/sideBar/SideBar.vue";
-
-
-
 </script>
 
 <template>
