@@ -4,54 +4,70 @@
 
         <div class="container">
 
+            <nav class="formNav">
+                <ul class="breadcrumb">
+                    <li><a href="#">Company facilities</a></li>
+                    <li><a href="#">Stationary combustion</a></li>
+                    <li><a href="#">Office 1</a></li>
+                </ul>
 
-            <ul class="breadcrumb">
-                <li><a href="#">Company facilities</a></li>
-                <li><a href="#">Stationary combustion</a></li>
-                <li><a href="#">Office 1</a></li>
-            </ul>
+                <div class="close">
+                    <font-awesome-icon icon="fa-solid fa-xmark" />
+                </div>
 
-            <div id="onClose"></div>
+            </nav>
+
             <div>
                 <h1>Heating main building</h1>
             </div>
 
             <div class="headings">
-                <h3>Data</h3>
-                <h3>History</h3>
-                <h3>Details</h3>
-                <h3>Activity</h3>
-                <h3>Notes</h3>
+                <h4>Data</h4>
+                <h4>History</h4>
+                <h4>Details</h4>
+                <h4>Activity</h4>
+                <h4>Notes</h4>
+            </div>
+
+            <div class="divider1">
+                <div class="shadow"></div>
             </div>
 
             <form @submit.prevent="handleSubmit">
                 <div class="form-group">
-                    <label for="fullName">Type</label>
+                    <label for="type">Type</label>
                     <input type="text" id="type" v-model="type">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Value:</label>
+                    <label for="value">Value:</label>
                     <input type="number" value="number" id="value" v-model="value">
                 </div>
 
                 <div class="form-group">
-                    <label for="massage">Unit:</label>
-                    <input type="text" id="unit" v-model="unit">
+                    <label for="unit">Unit:</label>
+                    <select class="form-group-select" id="unit" name="units" v-model="unit">
+                        <option value="kWh">KWh</option>
+                        <option value="m3">M3</option>
+                        <option value="liter">Liter</option>
+                    </select>
                 </div>
 
                 <button type="submit">Submit</button>
             </form>
 
-            <div class="divider">
-
+            <div class="divider2">
+                <div class="shadow"></div>
             </div>
 
             <div class="note">
+                <font-awesome-icon icon="fa-regular fa-note-sticky" />
                 <p>Add note</p>
             </div>
 
             <div class="attachment">
+
+                <font-awesome-icon icon="fa-solid fa-paperclip" />
                 <p>Add attachment</p>
             </div>
 
@@ -60,12 +76,6 @@
 
         </div>
 
-        <div>
-            <p>Result</p>
-            <p>Type: {{ type }}</p>
-            <p>Value: {{ value }}</p>
-            <p>Unit: {{ unit }}</p>
-        </div>
     </section>
 </template>
 
@@ -125,11 +135,19 @@ section {
     flex-direction: column;
 }
 
+.close {
+    position: relative;
+    top: 5%;
+    left: 10%;
+    font-size: 24px;
+}
+
 .container {
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
+    padding-left: 40px;
     box-shadow: 0px 0px 20px #00000033;
     border-radius: 8px;
 }
@@ -139,6 +157,7 @@ section {
 .breadcrumb {
     font: .75em sans-serif;
     list-style: none;
+    padding-right: -40px;
 }
 
 .breadcrumb p {
@@ -147,7 +166,6 @@ section {
 
 .breadcrumb li {
     display: inline-block;
-    margin-bottom: .2em;
 }
 
 .breadcrumb li a {
@@ -204,7 +222,19 @@ section {
 
 /* End breadcrumbs */
 
+.formNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+label {
+    margin-right: auto;
+}
+
 .form-group {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     font-size: 20px;
     color: #9e9e9e;
@@ -212,20 +242,107 @@ section {
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 50%;
     padding: 5px;
     font-size: 18px;
     border: 1px solid rgba(128, 128, 128, 0.199);
     margin-top: 5px;
 }
 
+.form-group-select {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 50%;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid rgba(128, 128, 128, 0.199);
+    margin-top: 5px;
+}
+
+.headings {
+    display: flex;
+    flex-direction: row;
+    ;
+    padding: 1em;
+}
+
+.headings h4 {
+    padding: .5em;
+}
+
 button {
-    width: 100%;
+    width: 30%;
     border: none;
-    padding: 20px;
-    font-size: 24px;
+    padding: 10px;
+    font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
-</style>
+
+button:active {
+    scale: 75%;
+}
+
+button:hover {
+    box-shadow: 6px 6px 2px 1px rgba(70, 255, 166, 0.1);
+    transition: 0.5s;
+}
+
+
+
+.divider1 {
+    margin: -20px auto 40px;
+    width: 80%;
+    position: relative;
+}
+
+.divider1 .shadow {
+    overflow: hidden;
+    height: 5px;
+}
+
+.divider1 .shadow:after {
+    opacity: 25%;
+    content: '';
+    display: block;
+    margin: -25px auto 0;
+    width: 100%;
+    height: 25px;
+    border-radius: 125px/12px;
+    box-shadow: 0 0 8px black;
+}
+
+.divider2 {
+    margin: 15px auto 30px;
+    width: 80%;
+    position: relative;
+}
+
+.divider2 .shadow {
+    overflow: hidden;
+    height: 5px;
+}
+
+.divider2 .shadow:after {
+    opacity: 25%;
+    content: '';
+    display: block;
+    margin: -25px auto 0;
+    width: 100%;
+    height: 25px;
+    border-radius: 125px/12px;
+    box-shadow: 0 0 8px black;
+}
+
+
+.note,
+.attachment {
+    display: flex;
+    flex-direction: row;
+}</style>
