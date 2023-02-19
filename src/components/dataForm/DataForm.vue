@@ -32,7 +32,8 @@
 </template>
 
 <script lang="ts">
-import { projectFirestore } from '../firebase/config'
+import { db } from '../../firebase/config'
+import { collection } from '@firebase/firestore';
 
 interface IHandleSubmit {
     type: string;
@@ -51,12 +52,12 @@ data() {
 },
 methods: {
   handleSubmit() {
-    let userMessage:IHandleSubmit = {
+    let emissionData:IHandleSubmit = {
       type: this.type,
       value: this.value,
       unit: this.unit,
     }
-    projectFirestore.collection('userMessages').add(userMessage)
+    const emissionDataRef = collection(db, "emissionData");
   }
 }
 }
@@ -73,10 +74,6 @@ interface IEmissionEntry {
 </script>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: "Montserrat";
-}
 
 section {
     height: 100vh;

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import 'firebase/firestore';
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDNOITEfXiIDg9cVx2OKn6P58LMZkch-Zg",
@@ -16,7 +16,6 @@ const app = initializeApp(firebaseConfig);
 
 //  init firestore
 
-const projectFirestore = firebase.[eeeeee///////feeeeeeeeeeeeeeeeeeeeeeeeee55555555555555555555555555555555555555555555555555555555555555555555555$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$d5dddddddddddddddddddddddddddddddddddddddddddddddddddddd]
-.
+const db = getFirestore(app);
 
-export { projectFirestore }
+export { db }
