@@ -22,11 +22,11 @@
             </div>
 
             <div class="headings">
-                <h4>Data</h4>
-                <h4>History</h4>
-                <h4>Details</h4>
-                <h4>Activity</h4>
-                <h4>Notes</h4>
+                <h4><a href="#">Data</a></h4>
+                <h4><a href="#">History</a></h4>
+                <h4><a href="#">Details</a></h4>
+                <h4><a href="#">Activity</a></h4>
+                <h4><a href="#">Notes</a></h4>
             </div>
 
             <div class="divider1">
@@ -67,8 +67,8 @@
 
             <div class="attachment">
 
-                <font-awesome-icon icon="fa-solid fa-paperclip" />
-                <p>Add attachment</p>
+                <input id="upload" class="upload" type="file"/>
+                <label for="upload"><font-awesome-icon icon="fa-solid fa-paperclip" /> Add attachment</label>
             </div>
 
             <div></div>
@@ -263,11 +263,13 @@ label {
     margin-top: 5px;
 }
 
-.headings {
+.headings, a {
     display: flex;
     flex-direction: row;
     ;
     padding: 1em;
+    text-decoration: none;
+    color: rgba(128,128,128);
 }
 
 .headings h4 {
@@ -345,4 +347,16 @@ button:hover {
 .attachment {
     display: flex;
     flex-direction: row;
-}</style>
+    cursor: pointer;
+}
+
+.upload {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+</style>
