@@ -5,13 +5,20 @@
       {{ index }}
       <h1>{{ headCategory }}</h1>
 
-      <div class="sub-list" v-for="(fossilFuels, index) in listSubCategories"
-      :key="fossilFuels">
-      {{ index }}
-      <h2>{{ fossilFuels }}</h2>
+      <div class="sub-list" v-for="subCats in listSubCategories">
+        <div>
+          {{ subCats.title }}
+        </div>
+        <div v-for="building in subCats.buildings" :key="building"
+        >
+          {{ building }}
+        </div>
+
 
 
       </div>
+
+
     </div>
 
     <DataForm />
@@ -29,21 +36,15 @@ const listHeadCategory = {
 }
 
 const listSubCategories = [
-  [
-    {
-      fossilFuels: [{
-        buildings: ["HeadQuarters", "Office1", "Office2", "Office3", "Factory 1", "Office2"]
-      }]
-    }
-  ],
-  [
-    {
-      processes: [{
-        empty: []
-      }]
-    }
-  ]
+  {
+    title: "Fossil Fuels",
+    buildings: ["HeadQuarters", "Office1", "Office2", "Office3", "Factory 1", "Office2"]
+  },
+  {
+    title: "Processes"
+  }
 ]
+
 
 export default Vue.extend({
   name: "DataView",
