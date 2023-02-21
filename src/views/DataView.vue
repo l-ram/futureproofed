@@ -3,14 +3,14 @@
 
     <div class="list-bg">
       <div v-for="(headCategory, index) in listHeadCategory" :key="headCategory">
-        <h3 class="list-head">{{ headCategory }}</h3>
+        <h3 class="list-head"> <font-awesome-icon icon="fa-solid fa-arrow-down" />  {{ headCategory }}</h3>
 
         <div v-for="subCats in listSubCategories">
           <div class="sub-list">
-            {{ subCats.title }}
+            <font-awesome-icon icon="fa-solid fa-arrow-down" /> {{ subCats.title }}
           </div>
           <div class="buildings" v-for="building in subCats.buildings" :key="building">
-            {{ building }}
+            <font-awesome-icon icon="fa-solid fa-arrow-right" /> {{ building }}
           </div>
 
         </div>
@@ -63,8 +63,8 @@ export default Vue.extend({
 .dataView {
   background-color: #cecece;
   position: relative;
-  padding-left: 8%;
-  padding-top: 10%;
+  padding-left: 80px;
+  padding-top: 80px;
 }
 </style>
 
@@ -72,6 +72,7 @@ export default Vue.extend({
 .list-bg {
   border-radius: 15px;
   width: 70%;
+  text-align: left;
 }
 
 .list-head {
@@ -79,12 +80,18 @@ export default Vue.extend({
   position: relative;
   border-radius: 5px 5px 0 0;
   margin: 0.15em;
+  padding: .5em;
+  padding-left: 1em;
 }
 
 .sub-list {
   position: relative;
   background-color: #52d9915e;
   border-radius: 5px 5px 0 0;
+  padding: .5em;
+  padding-left: 1em;
+  cursor: pointer;
+
 }
 
 .buildings {
@@ -94,6 +101,9 @@ export default Vue.extend({
   width: 92%;
   margin: 0.15em;
   border-radius: 2px;
+  padding: .5em;
+  padding-left: 1em;
+  cursor: pointer;
 }
 
 </style>
