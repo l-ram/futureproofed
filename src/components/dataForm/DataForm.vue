@@ -118,12 +118,10 @@ export default {
 
 // Every key is the emission source of type string, and the value of each key is a object containing the emission data
 interface IEmissionEntry {
-    [source: string]: {
         type: string;
         value: number;
         unit: string;
     }
-}
 
 </script>
 
