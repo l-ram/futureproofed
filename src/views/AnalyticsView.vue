@@ -1,7 +1,7 @@
-<script lang="ts">
+<script lang="js">
 
 import Vue from "vue";
-import axios from  'axios';
+import axios from 'axios';
 
 // import { db } from "@/firebase/config";
 // import { doc, getDoc } from "firebase/firestore";
@@ -19,53 +19,111 @@ import axios from  'axios';
 
 // API array
 
-const url = 'https://swapi.dev/api/people/10'
+const url = 'https://swapi.dev/api/planets/'
 
-interface IApiData {
-	"name": string,
-	"height": number,
-	"mass": number,
-	"hair_color": string,
-	"skin_color": string,
-	"eye_color": string,
-	"birth_year": string,
-	"gender": string,
-	"homeworld": string,
-	"films": string[],
-	"species": string[],
-	"vehicles": string[],
-	"starships": [
-		"https://swapi.dev/api/starships/12/",
-		"https://swapi.dev/api/starships/22/"
-	],
-	"created": "2014-12-09T13:50:51.644000Z",
-	"edited": "2014-12-20T21:17:56.891000Z",
-	"url": "https://swapi.dev/api/people/1/"
-}
+interface ISwapiPlanetsData {
+	name: string
+	rotation_period: "23",
+	orbital_period: "304",
+	diameter: "10465",
+	climate: string,
+	gravity: string,
+	terrain: string,
+	surface_water: "1",
+	population: "200000",
+	residents: string[],
+	films: string[],
+	created: string,
+	edited: string,
+	url: string
 }
 
 export default Vue.extend({
-  name: "AnalyticsVue",
-  data() {
-    return {
-      // docSnap,
-      apiData : {}
-    }
-  },
-    mounted () {
-    axios
-      .get(url)
-      .then(response => (this.apiData = response))
-  }
-} )
+	name: "AnalyticsVue",
+	data() {
+		return {
+			// docSnap,
+			apiData: {}
+		}
+	},
+	mounted() {
+		axios
+			.get(url)
+			.then(response => (this.apiData = response.data.results))
+	}
+});
 
 
 </script>
 
 <template>
-  <div>
-    <div class="analytics" v-for="(person) in apiData" v-bind:key=person.name>
-      <h1>{{ person }}</h1>
-    </div>
-  </div>
+	<div>
+		<!-- <div v-for="(planet, idx) in apiData" :key="idx" :planet="planet" class="analytics">
+			
+			</div> -->
+
+		<main class="grid">
+
+			<article v-for="(planet, idx) in apiData" :key="idx" :planet="planet">
+				<img src={{planet.}} alt="Sample photo">
+				<div class="text">
+					<h3>{{ planet.name }}</h3>
+					<p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
+					<h4>Going forward</h4>
+					<img src="/pix/stock/css_grid_placement_lines_and_tracks.png" alt="Sample photo">
+					<p>Seamlessly visualize quality intellectual capital without superior collaboration and brain storming.
+					</p>
+					<p>Proactively envisioned multimedia based expertise and cross-media growth strategies.</p>
+					<button>Here's why</button>
+				</div>
+			</article>
+
+		</main>
+
+
+
+
+
+	</div>
 </template>
+
+<style>
+.analytics {
+	font-size: .75em;
+}
+
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
+}
+
+.grid>article {
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.grid>article img {
+	max-width: 100%;
+}
+
+.text {
+	padding: 0 20px 20px;
+}
+
+.text>button {
+	background: gray;
+	border-radius: 5px;
+	border: 0;
+	color: white;
+	padding: 10px;
+	width: 100%;
+}
+
+.grid>article:nth-child(1) {
+	grid-column: span 2;
+	grid-row: span 2;
+}
+</style>
