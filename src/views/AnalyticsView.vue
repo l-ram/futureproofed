@@ -34,17 +34,12 @@ export default Vue.extend({
   mounted() {
     axios.get('https://api.example.com/items')
       .then(response => {
-        this.apiData = response.data;
+        this.apiData: = response.data;
       })
       .catch(error => {
         console.log(error);
       });
-}
-  components: {
-  },
-  methods: {
-  },
-  
+} 
 
 
 

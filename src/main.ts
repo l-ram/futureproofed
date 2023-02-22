@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import axious, {isCancel, AxiosError} from 'axios';
+import axios, {isCancel, AxiosError} from 'axios';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -12,7 +12,7 @@ library.add(faArrowDown, faArrowRight, faCircleUser, faBell, faPaperclip, faNote
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 
-Vue.use(axious, isCancel, AxiosError);
+Vue.use(axios);
 
 new Vue({
   router,
