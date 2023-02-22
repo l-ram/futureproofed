@@ -14,7 +14,7 @@ interface IEmissionSubmit {
     }
 }
 
-let emissionData: IEmissionSubmit = {
+const emissionData: IEmissionSubmit = {
     // [""]: {
     //     energyType: '',
     //     value: 0,
@@ -30,13 +30,13 @@ export default {
         }
     },
     methods: {
-        handleSubmit() {
+        handleSubmit ():void {
             console.log("click");
-            let emissionData: IEmissionSubmit = {
-                [this.building]: {
-                    energyType: this.energyType,
-                    value: this.value,
-                    unit: this.unit,
+            const emissionData: IEmissionSubmit = {
+                [(this as any).building]: {
+                    energyType: (this as any).energyType,
+                    value: (this as any).value,
+                    unit: (this as any).unit,
                 }
             }
             console.log(emissionData);
@@ -88,13 +88,12 @@ export default {
                 
                 <div class="form-group">
                     <label for="type">Building</label>
-                    <input type="text" id="type" v-model="building">
+                    <input type="text" id="building" v-model="building">
                 </div>
                 
-                
                 <div class="form-group">
-                    <label for="type">Type</label>
-                    <input type="text" id="type" v-model="energyType">
+                    <label for="type">Energy Type</label>
+                    <input type="text" id="energyType" v-model="energyType">
                 </div>
 
                 <div class="form-group">

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import axious, {isCancel, AxiosError} from 'axios';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -10,6 +11,8 @@ import { faArrowDown, faArrowRight , faCircleUser, faPaperclip, faXmark, faBell,
 library.add(faArrowDown, faArrowRight, faCircleUser, faBell, faPaperclip, faNoteSticky, faXmark, faHome, faChartLine, faListCheck, faMugHot, faMapLocationDot, faMagnifyingGlass);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
+
+Vue.use(axious, isCancel, AxiosError);
 
 new Vue({
   router,

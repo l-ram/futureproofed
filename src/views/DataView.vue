@@ -2,10 +2,10 @@
   <div class="dataView">
 
     <div class="list-bg">
-      <div v-for="(headCategory, index) in listHeadCategory" :key="headCategory">
+      <div v-for="(headCategory) in listHeadCategory" :key="headCategory">
         <h3 class="list-head"> <font-awesome-icon icon="fa-solid fa-arrow-down" />  {{ headCategory }}</h3>
 
-        <div v-for="subCats in listSubCategories">
+        <div v-for="subCats in listSubCategories" :key="subCats.title">
           <div class="sub-list">
             <font-awesome-icon icon="fa-solid fa-arrow-down" /> {{ subCats.title }}
           </div>
