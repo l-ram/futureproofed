@@ -62,7 +62,7 @@ export default Vue.extend({
 
 		<main class="grid">
 			<article v-for="(planet, idx) in apiData" :key="idx" :planet="planet">
-				<img src="../assets/star-wars-tatooine.jpg" alt="Sample photo">
+				<img src="../assets/star-wars-tatooine.jpg" alt="tatooine">
 				<div class="text">
 					<!-- Name -->
 					<h3>{{ planet.name }}</h3>
