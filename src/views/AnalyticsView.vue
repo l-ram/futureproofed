@@ -57,31 +57,27 @@ export default Vue.extend({
 </script>
 
 <template>
-	<div>
-		<!-- <div v-for="(planet, idx) in apiData" :key="idx" :planet="planet" class="analytics">
-			
-				</div> -->
+	<div class="analytics">
+		<h1 class="title">Star Wars planets from SWAPI API</h1>
 
 		<main class="grid">
-
 			<article v-for="(planet, idx) in apiData" :key="idx" :planet="planet">
-				<img src="" alt="Sample photo">
+				<img src="../assets/star-wars-tatooine.jpg" alt="Sample photo">
 				<div class="text">
 					<!-- Name -->
 					<h3>{{ planet.name }}</h3>
 					<!-- Stats -->
-					<p>{{ planet.climate}}</p>
+					<p>{{ planet.climate.charAt(0).toUpperCase() + planet.climate.slice(1) }}</p>
 					<h4>{{ planet.terrain.charAt(0).toUpperCase() + planet.terrain.slice(1) }}</h4>
 					<!-- Image -->
-					<img src="/pix/stock/css_grid_placement_lines_and_tracks.png" alt="Sample photo">
-					<p>Seamlessly visualize quality intellectual capital without superior collaboration and brain storming.
-					</p>
+					<font-awesome-icon icon="fa-solid fa-jedi" />
+					<p>Population: {{ planet.population }}</p>
 					<!-- Text over -->
-					<p>Proactively envisioned multimedia based expertise and cross-media growth strategies.</p>
-					<button>Here's why</button>
+					<p>Diameter:{{ planet.diameter }}</p>
+					<p>Surface water:{{ planet.surface_water }}</p>
+					<button> <a v-bind:href="planet.url">Visit planet</a></button>
 				</div>
 			</article>
-
 		</main>
 
 
@@ -93,9 +89,15 @@ export default Vue.extend({
 
 <style>
 .analytics {
+	position: relative;
+	padding-left: 80px;
+	padding-top: 80px;
 	font-size: .75em;
 }
 
+.title {
+	text-align: center;
+}
 
 .grid {
 	display: grid;
@@ -111,6 +113,7 @@ export default Vue.extend({
 
 .grid>article img {
 	max-width: 100%;
+	border-radius: 15px 15px 0 0;
 }
 
 .text {
@@ -118,12 +121,13 @@ export default Vue.extend({
 }
 
 .text>button {
+	color: black;
 	background: gray;
 	border-radius: 5px;
 	border: 0;
-	color: white;
 	padding: 10px;
 	width: 100%;
+	text-decoration: none;
 }
 
 .grid>article:nth-child(1) {
