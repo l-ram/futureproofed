@@ -20,7 +20,6 @@
     </div>
     <DataForm />
 
-
   </div>
 </template>
 
