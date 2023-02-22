@@ -1,4 +1,54 @@
 
+
+
+<script lang="ts">
+import { db } from '../../firebase/config'
+import { collection, addDoc } from '@firebase/firestore';
+
+// Every key is the emission source of type string, and the value of each key is a object containing the emission data
+interface IEmissionSubmit {
+    [key: string]: {
+        energyType: string;
+        value: number;
+        unit: string;
+    }
+}
+
+let emissionData: IEmissionSubmit = {
+    // [""]: {
+    //     energyType: '',
+    //     value: 0,
+    //     unit: '',
+    // }
+}
+
+
+export default {
+    data() {
+        return {
+            emissionData
+        }
+    },
+    methods: {
+        handleSubmit() {
+            console.log("click");
+            let emissionData: IEmissionSubmit = {
+                [this.building]: {
+                    energyType: this.energyType,
+                    value: this.value,
+                    unit: this.unit,
+                }
+            }
+            console.log(emissionData);
+
+            addDoc(collection(db, "emissionData"), emissionData);
+            console.log("added to database!");
+        }
+    }
+}
+
+</script>
+
 <template>
     <section>
 
@@ -33,10 +83,18 @@
                 <div class="shadow"></div>
             </div>
 
+            
             <form @submit.prevent="handleSubmit">
+                
+                <div class="form-group">
+                    <label for="type">Building</label>
+                    <input type="text" id="type" v-model="building">
+                </div>
+                
+                
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <input type="text" id="type" v-model="type">
+                    <input type="text" id="type" v-model="energyType">
                 </div>
 
                 <div class="form-group">
@@ -67,7 +125,7 @@
 
             <div class="attachment">
 
-                <input id="upload" class="upload" type="file"/>
+                <input id="upload" class="upload" type="file" />
                 <label for="upload"><font-awesome-icon icon="fa-solid fa-paperclip" /> Add attachment</label>
             </div>
 
@@ -79,72 +137,28 @@
     </section>
 </template>
 
-<script lang="ts">
-import { db } from '../../firebase/config'
-import { collection, addDoc } from '@firebase/firestore';
-
-interface IHandleSubmit {
-    [key: string]: {
-        type: string;
-        value: number;
-        unit: string;
-    }
-}
-
-
-export default {
-    data() {
-        return {
-            type: '',
-            value: 0,
-            unit: ''
-        }
-    },
-    methods: {
-        handleSubmit() {
-            console.log("click");
-            let emissionData: IHandleSubmit = {
-                type: this.type,
-                value: this.value,
-                unit: this.unit,
-            }
-            console.log(emissionData);
-
-            addDoc(collection(db, "emissionData"), emissionData);
-
-        }
-    }
-}
-
-// Every key is the emission source of type string, and the value of each key is a object containing the emission data
-interface IEmissionEntry {
-        type: string;
-        value: number;
-        unit: string;
-    }
-
-</script>
-
 <style>
 section {
-    margin-top: 10%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    background-color: white;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 2%;
+    min-width: 300px;
+    margin-top: 5%;
 }
 
 .close {
     position: relative;
-    top: 5%;
-    left: 10%;
-    font-size: 24px;
+    top: 10px;
+    font-size: 20px;
 }
 
 .container {
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     padding-left: 40px;
     box-shadow: 0px 0px 20px #00000033;
     border-radius: 8px;
@@ -153,9 +167,10 @@ section {
 /* Breadcrumbs */
 
 .breadcrumb {
-    font: .75em sans-serif;
+    position: relative;
+    right: 5em;
+    font: .60em sans-serif;
     list-style: none;
-    padding-right: -40px;
 }
 
 .breadcrumb p {
@@ -234,7 +249,7 @@ label {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 14px;
     color: #9e9e9e;
 }
 
@@ -261,13 +276,13 @@ label {
     margin-top: 5px;
 }
 
-.headings, a {
+.headings,
+a {
     display: flex;
     flex-direction: row;
     ;
-    padding: 1em;
     text-decoration: none;
-    color: rgba(128,128,128);
+    color: rgba(128, 128, 128);
 }
 
 .headings h4 {
@@ -293,8 +308,6 @@ button:hover {
     box-shadow: 6px 6px 2px 1px rgba(70, 255, 166, 0.1);
     transition: 0.5s;
 }
-
-
 
 .divider1 {
     margin: -20px auto 40px;
@@ -350,11 +363,10 @@ button:hover {
 
 .upload {
     width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
-
 </style>

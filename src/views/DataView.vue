@@ -42,6 +42,7 @@ const listSubCategories = [
     title: "Processes"
   }
 ]
+
 export default Vue.extend({
   name: "DataView",
   data() {
@@ -61,7 +62,6 @@ export default Vue.extend({
 
 <style scoped>
 .dataView {
-  background-color: #cecece;
   position: relative;
   padding-left: 80px;
   padding-top: 80px;
@@ -79,7 +79,7 @@ export default Vue.extend({
   background-color: #f6f6f6;
   position: relative;
   border-radius: 5px 5px 0 0;
-  margin: 0.15em;
+  margin-bottom: 0.15em;
   padding: .5em;
   padding-left: 1em;
 }
@@ -98,12 +98,17 @@ export default Vue.extend({
   position: relative;
   background-color: #dadada;
   left: 5%;
-  width: 92%;
+  width: 89%;
   margin: 0.15em;
   border-radius: 2px;
   padding: .5em;
   padding-left: 1em;
   cursor: pointer;
+}
+
+.buildings:hover {
+  background-color: #b3b3b3;
+  transition: 0.2s;
 }
 
 </style>
