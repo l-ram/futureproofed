@@ -1,11 +1,10 @@
-<script lang="js">
+<script lang="ts">
 
 import Vue from "vue";
 import axios from 'axios';
 
 // import { db } from "@/firebase/config";
 // import { doc, getDoc } from "firebase/firestore";
-
 
 // // get firebase data
 // const docRef = doc(db, "emissionData");
@@ -17,20 +16,18 @@ import axios from 'axios';
 //   console.log("No such data")
 // }
 
-// API array
-
 const url = 'https://swapi.dev/api/planets/'
 
-interface ISwapiPlanetsData {
+interface ISwapiApiPlanetData {
 	name: string
-	rotation_period: "23",
-	orbital_period: "304",
-	diameter: "10465",
+	rotation_period: string,
+	orbital_period: string,
+	diameter: string,
 	climate: string,
 	gravity: string,
 	terrain: string,
-	surface_water: "1",
-	population: "200000",
+	surface_water: string,
+	population: string,
 	residents: string[],
 	films: string[],
 	created: string,
@@ -38,13 +35,17 @@ interface ISwapiPlanetsData {
 	url: string
 }
 
+interface DataObjectType {
+	apiData: ISwapiApiPlanetData[];
+}
+
 export default Vue.extend({
 	name: "AnalyticsVue",
-	data() {
+	data(): DataObjectType {
 		return {
 			// docSnap,
-			apiData: {}
-		}
+			apiData: []
+		};
 	},
 	mounted() {
 		axios
@@ -53,26 +54,29 @@ export default Vue.extend({
 	}
 });
 
-
 </script>
 
 <template>
 	<div>
 		<!-- <div v-for="(planet, idx) in apiData" :key="idx" :planet="planet" class="analytics">
 			
-			</div> -->
+				</div> -->
 
 		<main class="grid">
 
 			<article v-for="(planet, idx) in apiData" :key="idx" :planet="planet">
-				<img src={{planet.}} alt="Sample photo">
+				<img src="" alt="Sample photo">
 				<div class="text">
+					<!-- Name -->
 					<h3>{{ planet.name }}</h3>
-					<p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
-					<h4>Going forward</h4>
+					<!-- Stats -->
+					<p>{{ planet.climate}}</p>
+					<h4>{{ planet.terrain.charAt(0).toUpperCase() + planet.terrain.slice(1) }}</h4>
+					<!-- Image -->
 					<img src="/pix/stock/css_grid_placement_lines_and_tracks.png" alt="Sample photo">
 					<p>Seamlessly visualize quality intellectual capital without superior collaboration and brain storming.
 					</p>
+					<!-- Text over -->
 					<p>Proactively envisioned multimedia based expertise and cross-media growth strategies.</p>
 					<button>Here's why</button>
 				</div>
