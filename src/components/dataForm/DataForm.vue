@@ -1,6 +1,4 @@
 
-
-
 <script lang="ts">
 import { db } from '../../firebase/config'
 import { collection, addDoc } from '@firebase/firestore';
@@ -123,14 +121,11 @@ export default {
             </div>
 
             <div class="attachment">
-
                 <input id="upload" class="upload" type="file" />
                 <label for="upload"><font-awesome-icon icon="fa-solid fa-paperclip" /> Add attachment</label>
             </div>
 
             <div></div>
-
-
         </div>
 
     </section>
